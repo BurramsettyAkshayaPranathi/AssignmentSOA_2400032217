@@ -1,0 +1,49 @@
+
+body {
+  background-color: #f4f7fb;
+}
+
+.page-heading {
+  padding: 8px 0;
+}
+
+.page-heading h1 {
+  color: #183153;
+  font-size: clamp(1.7rem, 4vw, 2.3rem);
+}
+
+.card {
+  border-radius: 14px;
+}
+
+.form-control,
+.form-select {
+  min-height: 44px;
+}
+
+.btn {
+  border-radius: 7px;
+}
+
+.empty-icon {
+  font-size: 2.5rem;
+}
+
+.table th,
+.table td {
+  white-space: nowrap;
+}
+
+footer {
+  font-size: 0.9rem;
+}
+
+@media (max-width: 576px) {
+  .page-heading {
+    padding-top: 0;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+}
