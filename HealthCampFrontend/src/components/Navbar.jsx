@@ -1,10 +1,11 @@
 
 function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm health-navbar">
       <div className="container">
         <a className="navbar-brand fw-bold" href="#home">
-          + HealthCamp
+          <span className="brand-icon">+</span>
+          <span>HealthCamp</span>
         </a>
 
         <button
@@ -24,11 +25,21 @@ function Navbar() {
             <a className="nav-link" href="#home">
               Home
             </a>
+
             <a className="nav-link" href="#register">
               Add Registration
             </a>
+
             <a className="nav-link" href="#registrations">
               View Records
+            </a>
+
+            <a className="nav-link" href="#find-registration">
+              Find ID
+            </a>
+
+            <a className="nav-link" href="#about">
+              About
             </a>
           </div>
         </div>

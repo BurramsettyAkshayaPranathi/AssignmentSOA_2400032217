@@ -1,49 +1,549 @@
 
-body {
-  background-color: #f4f7fb;
+:root {
+  --teal: #0d9488;
+  --teal-dark: #115e59;
+  --teal-light: #ccfbf1;
+  --blue: #0891b2;
+  --purple: #7c3aed;
+  --green: #16a34a;
+  --red: #dc2626;
+  --page-bg: #f4f9fb;
+  --text: #183b3a;
+  --muted: #718584;
+  --border: #e0eeed;
 }
 
+/* Global styles */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 24px;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    radial-gradient(ellipse at top left, #d9faf1 0, transparent 35%),
+    radial-gradient(ellipse at top right, #e7eaff 0, transparent 30%),
+    var(--page-bg);
+  color: var(--text);
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+::selection {
+  background: #99f6e4;
+  color: #134e4a;
+}
+
+/* Navbar */
+
+.health-navbar {
+  position: relative;
+  z-index: 10;
+  padding: 15px 0;
+  background: linear-gradient(
+    110deg,
+    #115e59 0%,
+    #0d9488 55%,
+    #0891b2 100%
+  ) !important;
+  box-shadow: 0 4px 18px rgba(15, 118, 110, 0.2) !important;
+}
+
+.health-navbar .navbar-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #ffffff !important;
+  font-size: 1.35rem;
+  letter-spacing: -0.4px;
+  transition: opacity 0.25s ease;
+}
+
+.health-navbar .navbar-brand:hover {
+  opacity: 0.85;
+}
+
+.brand-icon {
+  display: inline-flex;
+  width: 38px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #0f766e;
+  font-size: 1.6rem;
+  font-weight: 800;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+}
+
+.health-navbar .navbar-nav .nav-link {
+  margin: 0 4px;
+  padding: 10px 15px !important;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  color: #ffffff !important;
+  font-size: 0.96rem;
+  font-weight: 650;
+  transition:
+    color 0.25s ease,
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.health-navbar .navbar-nav .nav-link:hover,
+.health-navbar .navbar-nav .nav-link:focus-visible {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.18);
+  transform: translateY(-2px);
+}
+
+.health-navbar .navbar-nav .nav-link.active {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.health-navbar .navbar-toggler {
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 9px;
+}
+
+.health-navbar .navbar-toggler:focus {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+}
+
+/* Main heading */
+
 .page-heading {
-  padding: 8px 0;
+  padding: 18px 0 12px;
 }
 
 .page-heading h1 {
-  color: #183153;
-  font-size: clamp(1.7rem, 4vw, 2.3rem);
+  color: #153e3b;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -1.2px;
 }
 
+.page-heading p:first-child {
+  display: inline-block;
+  padding: 7px 12px;
+  border-radius: 20px;
+  background: #ccfbf1;
+  color: #0f766e !important;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+}
+
+/* Cards */
+
 .card {
-  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(13, 148, 136, 0.13) !important;
+  border-radius: 18px !important;
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 8px 25px rgba(15, 118, 110, 0.07) !important;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.card:hover {
+  box-shadow: 0 12px 30px rgba(15, 118, 110, 0.12) !important;
+}
+
+.card-body {
+  padding: 24px;
+}
+
+.card h2,
+.card h4 {
+  color: var(--text);
+}
+
+/* Overview cards */
+
+#home section[aria-label="Registration overview"] .card {
+  position: relative;
+  min-height: 125px;
+  padding: 22px !important;
+  border: 0 !important;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+#home section[aria-label="Registration overview"] .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 28px rgba(15, 118, 110, 0.18) !important;
+}
+
+#home section[aria-label="Registration overview"] .card::after {
+  position: absolute;
+  right: -22px;
+  bottom: -32px;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  content: "";
+  transition: transform 0.3s ease;
+}
+
+#home section[aria-label="Registration overview"] .card:hover::after {
+  transform: scale(1.25);
+}
+
+#home section[aria-label="Registration overview"]
+.col-md-4:nth-child(1) .card {
+  background: linear-gradient(135deg, #0f766e, #2dd4bf);
+}
+
+#home section[aria-label="Registration overview"]
+.col-md-4:nth-child(2) .card {
+  background: linear-gradient(135deg, #15803d, #4ade80);
+}
+
+#home section[aria-label="Registration overview"]
+.col-md-4:nth-child(3) .card {
+  background: linear-gradient(135deg, #6d28d9, #a78bfa);
+}
+
+#home section[aria-label="Registration overview"] .card span,
+#home section[aria-label="Registration overview"] .card h3 {
+  position: relative;
+  z-index: 1;
+  color: #ffffff !important;
+}
+
+#home section[aria-label="Registration overview"] .card span {
+  font-weight: 650;
+}
+
+#home section[aria-label="Registration overview"] .card h3 {
+  margin-top: 12px;
+  font-size: 2.3rem;
+}
+
+/* Form labels and inputs */
+
+.form-label {
+  color: #294d4b;
+  font-size: 0.91rem;
 }
 
 .form-control,
 .form-select {
-  min-height: 44px;
+  min-height: 46px;
+  border: 1px solid #d7e9e6;
+  border-radius: 10px;
+  background-color: #fbfefe;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
 }
 
+.form-control:hover,
+.form-select:hover {
+  border-color: #7dd3c7;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--teal);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.12);
+}
+
+.form-control.is-invalid,
+.form-select.is-invalid {
+  border-color: #ef4444;
+}
+
+.invalid-feedback {
+  font-size: 0.82rem;
+}
+
+/* Buttons */
+
 .btn {
-  border-radius: 7px;
+  border-radius: 10px;
+  font-weight: 650;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(15, 118, 110, 0.13);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-primary {
+  border-color: var(--teal);
+  background: linear-gradient(110deg, #0d9488, #14b8a6);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  border-color: #0f766e;
+  background: linear-gradient(110deg, #0f766e, #0d9488);
+}
+
+.btn-outline-primary {
+  border-color: #99d9d0;
+  color: #0f766e;
+}
+
+.btn-outline-primary:hover {
+  border-color: var(--teal);
+  background: var(--teal);
+  color: #ffffff;
+}
+
+.btn-outline-danger:hover {
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.15);
+}
+
+/* Registration tables */
+
+.table-responsive {
+  border-radius: 12px;
+}
+
+.table {
+  --bs-table-hover-bg: #ecfdf5;
+  margin-bottom: 0;
+}
+
+.table thead th {
+  padding: 15px 13px;
+  border-bottom: 2px solid #99f6e4;
+  background: #e6fffa;
+  color: #115e59;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+.table tbody td {
+  padding: 15px 13px;
+  border-color: #edf4f3;
+  vertical-align: middle;
+}
+
+.table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.table tbody tr:hover td {
+  background-color: #f0fdfa;
+}
+
+.table .badge {
+  padding: 7px 11px;
+  border-radius: 20px;
+  font-size: 0.76rem;
+}
+
+.table .text-bg-success {
+  background-color: #dcfce7 !important;
+  color: #166534 !important;
+}
+
+.table .text-bg-secondary {
+  background-color: #fef3c7 !important;
+  color: #92400e !important;
+}
+
+.table .text-bg-primary {
+  background-color: #ccfbf1 !important;
+  color: #115e59 !important;
+}
+
+/* Find registration result */
+
+.registration-result {
+  border: 1px solid #a7f3d0;
+  background: #ecfdf5;
+  animation: slide-in 0.3s ease;
+}
+
+.registration-result h5 {
+  color: #0f766e;
+}
+
+.registration-result p {
+  margin-bottom: 9px;
+  color: #365653;
+}
+
+/* Delete registration card */
+
+.delete-card {
+  border-top: 4px solid #ef4444 !important;
+  background: linear-gradient(180deg, #fffafa, #ffffff);
+}
+
+.delete-card h4 {
+  color: #9f2929;
+}
+
+.delete-card .btn-danger {
+  border-color: #dc2626;
+  background: linear-gradient(110deg, #dc2626, #ef4444);
+}
+
+.delete-card .btn-danger:hover {
+  background: linear-gradient(110deg, #b91c1c, #dc2626);
+}
+
+.delete-warning {
+  color: #a16262;
+  font-size: 0.82rem;
+}
+
+/* Alerts and notifications */
+
+.alert {
+  border: 0;
+  border-radius: 12px;
+  animation: slide-in 0.3s ease;
+}
+
+.alert-success {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.alert-danger {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* Loading and empty states */
+
+.spinner-border.text-primary {
+  color: var(--teal) !important;
 }
 
 .empty-icon {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
+  animation: gentle-float 2.5s ease-in-out infinite;
 }
 
-.table th,
-.table td {
-  white-space: nowrap;
+/* About section and footer */
+
+#about {
+  scroll-margin-top: 24px;
+  border-top: 3px solid #14b8a6 !important;
+}
+
+#about h4 {
+  color: #0f766e;
 }
 
 footer {
-  font-size: 0.9rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+/* Animations */
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gentle-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Responsive layout */
+
+@media (max-width: 991px) {
+  .health-navbar .navbar-collapse {
+    padding-top: 12px;
+  }
+
+  .health-navbar .navbar-nav .nav-link {
+    margin: 3px 0;
+  }
 }
 
 @media (max-width: 576px) {
   .page-heading {
-    padding-top: 0;
+    padding-top: 8px;
+  }
+
+  .page-heading h1 {
+    letter-spacing: -0.7px;
   }
 
   .card-body {
-    padding: 1rem;
+    padding: 17px;
   }
+
+  #home section[aria-label="Registration overview"] .card {
+    min-height: 110px;
+  }
+
+  #home section[aria-label="Registration overview"] .card h3 {
+    font-size: 1.9rem;
+  }
+
+  .table thead th,
+  .table tbody td {
+    padding: 12px 10px;
+  }
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
 }

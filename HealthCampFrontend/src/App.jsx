@@ -281,92 +281,121 @@ function App() {
           </div>
         </section>
 
-        {/* Section 3: Find Registration by ID */}
-        <section id="find-registration" className="mb-4">
-          <div className="card shadow-sm border-0 p-3 p-md-4">
-            <div className="mb-3">
-              <h4 className="fw-bold mb-1">
-                03. Find Registration by ID
-              </h4>
-              <p className="text-secondary mb-0">
-                Search for a participant using their registration ID.
-              </p>
-            </div>
+ {/* Section 3: Find and Delete Registration by ID */}
+<section id="find-registration" className="mb-4">
+  <div className="row g-4">
+    {/* Find by ID */}
+    <div className="col-12 col-lg-6">
+      <div className="card border-0 shadow-sm h-100 p-3 p-md-4">
+        <div className="mb-3">
+          <h4 className="fw-bold mb-1">03. Find Registration by ID</h4>
+          <p className="text-secondary mb-0">
+            Search for a participant using their registration ID.
+          </p>
+        </div>
 
-            <form
-              onSubmit={findRegistration}
-              className="row g-2 align-items-center"
-            >
-              <div className="col-12 col-md-8">
-                <input
-                  type="number"
-                  className="form-control"
-                  placeholder="Enter Registration ID"
-                  value={searchId}
-                  onChange={(e) => {
-                    setSearchId(e.target.value);
-                    setSearchResult(null);
-                    setSearchError('');
-                  }}
-                  min="1"
-                  required
-                />
-              </div>
-
-              <div className="col-12 col-md-4">
-                <button
-                  type="submit"
-                  className="btn btn-primary w-100"
-                  disabled={searchLoading}
-                >
-                  {searchLoading
-                    ? 'Searching...'
-                    : 'Find Registration'}
-                </button>
-              </div>
-            </form>
-
-            {searchError && (
-              <div
-                className="alert alert-danger mt-3 mb-0"
-                role="alert"
-              >
-                {searchError}
-              </div>
-            )}
-
-            {searchResult && (
-              <div className="mt-4 p-3 border rounded">
-                <h5 className="fw-bold mb-3">
-                  Registration Details
-                </h5>
-
-                <p className="mb-2">
-                  <strong>ID:</strong> {searchResult.id}
-                </p>
-
-                <p className="mb-2">
-                  <strong>Camp Name:</strong>{' '}
-                  {searchResult.campName}
-                </p>
-
-                <p className="mb-2">
-                  <strong>Participant:</strong>{' '}
-                  {searchResult.participantName}
-                </p>
-
-                <p className="mb-2">
-                  <strong>Age:</strong> {searchResult.age}
-                </p>
-
-                <p className="mb-0">
-                  <strong>Attended:</strong>{' '}
-                  {searchResult.attended ? 'Yes' : 'No'}
-                </p>
-              </div>
-            )}
+        <form onSubmit={findRegistration} className="mt-auto">
+          <div className="mb-3">
+            <input
+              type="number"
+              className="form-control"
+              placeholder="Enter Registration ID"
+              value={searchId}
+              onChange={(e) => {
+                setSearchId(e.target.value);
+                setSearchResult(null);
+                setSearchError('');
+              }}
+              min="1"
+              required
+            />
           </div>
-        </section>
+
+          <button
+            type="submit"
+            className="btn btn-primary w-100"
+            disabled={searchLoading}
+          >
+            {searchLoading ? 'Searching...' : 'Find Registration'}
+          </button>
+        </form>
+
+        {searchError && (
+          <div className="alert alert-danger mt-3 mb-0" role="alert">
+            {searchError}
+          </div>
+        )}
+
+        {searchResult && (
+          <div className="registration-result mt-3 p-3 rounded">
+            <h5 className="fw-bold mb-3">Registration Details</h5>
+            <p><strong>ID:</strong> {searchResult.id}</p>
+            <p><strong>Camp Name:</strong> {searchResult.campName}</p>
+            <p><strong>Participant:</strong> {searchResult.participantName}</p>
+            <p><strong>Age:</strong> {searchResult.age}</p>
+            <p className="mb-0">
+              <strong>Attended:</strong>{' '}
+              {searchResult.attended ? 'Yes' : 'No'}
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+
+    {/* Delete by ID */}
+    <div className="col-12 col-lg-6">
+      <div className="card delete-card border-0 shadow-sm h-100 p-3 p-md-4">
+        <div className="mb-3">
+          <h4 className="fw-bold mb-1">04. Delete Registration by ID</h4>
+          <p className="text-secondary mb-0">
+            Enter a registration ID to remove that record.
+          </p>
+        </div>
+
+        <form
+          className="mt-auto"
+          onSubmit={(e) => {
+            e.preventDefault();
+            const id = e.currentTarget.elements.deleteId.value.trim();
+
+            if (/^[1-9]\d*$/.test(id)) {
+              handleDelete(Number(id));
+            }
+          }}
+        >
+          <div className="mb-3">
+            <input
+              name="deleteId"
+              type="number"
+              className="form-control"
+              placeholder="Enter Registration ID"
+              min="1"
+              step="1"
+              required
+            />
+          </div>
+
+          <button type="submit" className="btn btn-danger w-100">
+            Delete Registration
+          </button>
+        </form>
+
+        <p className="delete-warning mt-3 mb-0">
+   
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" className="card border-0 shadow-sm p-4 mb-4">
+  <h4 className="fw-bold">About HealthCamp</h4>
+  <p className="text-secondary mb-0">
+    HealthCamp is a registration management application for
+    organizing participant details, managing attendance, and
+    maintaining health camp records.
+  </p>
+</section>
 
         <footer className="text-center text-secondary py-4">
           Health Camp Registration System
