@@ -96,14 +96,16 @@ function RegistrationForm({ onSubmit, editData, onCancel, saving }) {
   return (
     <div className="card border-0 shadow-sm h-100">
       <div className="card-body p-3 p-md-4">
-        <h2 className="h4 fw-bold mb-1">
-          {editData ? 'Update Registration' : 'Add Registration'}
-        </h2>
-        <p className="text-secondary small mb-4">
-          {editData
-            ? 'Update the participant details below.'
-            : 'Enter the participant details to register.'}
-        </p>
+        {editData && (
+          <>
+            <h2 className="h4 fw-bold mb-1">
+              Update Registration
+            </h2>
+            <p className="text-secondary small mb-4">
+              Update the participant details below.
+            </p>
+          </>
+        )}
 
         <form onSubmit={handleSubmit} noValidate>
           <div className="mb-3">
@@ -225,8 +227,6 @@ function RegistrationForm({ onSubmit, editData, onCancel, saving }) {
               </button>
             )}
           </div>
-
-       
         </form>
       </div>
     </div>
